@@ -28,6 +28,27 @@ fn main() {
 
     let code_len = code.len();
 
-    println!("{} Byte.", code_len);
-    println!("{}", code);
+    while code_ptr < code_len {
+        match code.chars().nth(code_ptr).unwrap() {
+            INCREMENT => (),
+
+            DECREMENT => (),
+
+            RIGHT => (),
+
+            LEFT => (),
+
+            LOOP_START => (),
+
+            LOOP_END => (),
+
+            OUTPUT => (),
+
+            INPUT => (),
+
+            _ => (),
+        }
+
+        code_ptr += 1;
+    }
 }
