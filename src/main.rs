@@ -30,13 +30,13 @@ fn main() {
 
     while code_ptr < code_len {
         match code.chars().nth(code_ptr).unwrap() {
-            INCREMENT => (),
+            INCREMENT => memory[ptr] = memory[ptr].wrapping_add(1),
 
-            DECREMENT => (),
+            DECREMENT => memory[ptr] = memory[ptr].wrapping_sub(1),
 
-            RIGHT => (),
+            RIGHT => ptr = if ptr >= MEMORY_SIZE - 1 { 0 } else { ptr + 1 },
 
-            LEFT => (),
+            LEFT => ptr = if ptr <= 0 { MEMORY_SIZE - 1 } else { ptr - 1 },
 
             LOOP_START => (),
 
