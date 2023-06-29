@@ -1,4 +1,4 @@
-use std::{env, fs, process};
+use std::{env, fs, io, process};
 
 const INCREMENT: char = '+';
 const DECREMENT: char = '-';
@@ -42,9 +42,13 @@ fn main() {
 
             LOOP_END => (),
 
-            OUTPUT => (),
+            OUTPUT => print!("{}", memory[ptr] as char),
 
-            INPUT => (),
+            INPUT => {
+                let mut line = String::new();
+                io::stdin().read_line(&mut line).ok();
+                memory[ptr] = line.as_bytes()[0];
+            }
 
             _ => (),
         }
