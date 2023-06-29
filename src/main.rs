@@ -1,3 +1,5 @@
+use std::{env, fs, process};
+
 const INCREMENT: char = '+';
 const DECREMENT: char = '-';
 const RIGHT: char = '>';
@@ -13,4 +15,19 @@ fn main() {
     let mut memory: [u8; MEMORY_SIZE] = [0; MEMORY_SIZE];
     let mut ptr: usize = 0;
     let mut code_ptr: usize = 0;
+
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        eprintln!("Error: A Brainfuck code is not passed as a command-line argument.");
+        eprintln!("Please pass an argument as the form, $ ./brainfuck [FILENAME].");
+        process::exit(1);
+    }
+
+    let code: String = fs::read_to_string(&args[1])
+        .expect(&format!("Error: The file, {}, cannot be opened.", args[1]));
+
+    let code_len = code.len();
+
+    println!("{} Byte.", code_len);
+    println!("{}", code);
 }
